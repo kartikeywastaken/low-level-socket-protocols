@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/kartik/Desktop/CPP1",
-      "program": "/Users/kartik/Desktop/CPP1/build/Debug/outDebug"
+      "cwd": "/Users/kartik/Desktop/myServer",
+      "program": "/Users/kartik/Desktop/myServer/build/Debug/outDebug"
     }
   ]
 }

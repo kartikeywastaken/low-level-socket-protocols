@@ -29,7 +29,13 @@ int main(){
     s.sin_port = htons(serverPort); // htons is host to network short
     s.sin_addr.s_addr = INADDR_ANY;
 
-    bind(socket_fd, (struct sockaddr*)&s, sizeof(struct sockaddr_in));
+    int new_sock = bind(socket_fd, (struct sockaddr*)&s, sizeof(struct sockaddr_in));
+     if (new_sock < 0) {
+    // This will print the exact reason for the failure (e.g., "Permission denied")
+    perror("Bind failed"); 
+    exit(1);
+    }
+    printf("Bind successful! Waiting for a client to connect...\n");
     listen(socket_fd, 10);
     while (1)
     {
@@ -40,7 +46,6 @@ int main(){
             printf("\n New socket created: %d", newsock_fd);
         }
     
-
          while (1)
         {
            read(newsock_fd, msg_received, sizeof(msg_received));

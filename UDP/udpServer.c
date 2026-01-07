@@ -30,7 +30,13 @@ int main(){
     s.sin_addr.s_addr = INADDR_ANY;
 
 
-    bind(socket_fd, (struct sockaddr*)&s, sizeof(struct sockaddr_in));
+    int new_sock = bind(socket_fd, (struct sockaddr*)&s, sizeof(struct sockaddr_in));
+        if (new_sock < 0) {
+        // This will print the exact reason for the failure (e.g., "Permission denied")
+        perror("Bind failed");
+        exit(1);
+    }
+    printf("Bind successful! Waiting for a client to connect...\n");
     // Declare a variable to hold the size of the client address structure
     socklen_t client_addr_len = sizeof(c); // size of client addr
         // if (canR > 0)
